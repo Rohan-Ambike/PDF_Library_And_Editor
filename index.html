@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>PDF Library And Editor</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+
+    <link rel="icon" href="./images/DZfavicon.svg" sizes="192x192" />
+
+    <!-- Jquery Connection -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/draggable/1.0.0-beta.12/draggable.bundle.js"></script>
+
+    <!-- STYLESHEET -->
+    <link rel="stylesheet" href="./styles.css">
+
+    <style>
+        /* * {
+            border: 1px solid black;
+        } */
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <section id="nav" class="shadow fixed-top"
+        style="width: 100vw;transition: background-color 0.4s ease-out;background-color: #ffffffcc;">
+        <div class="container-fluid">
+            <nav class="navbar navbar-dark navbar-expand-lg  ">
+                <div class="container">
+                    <a class="navbar-brand" href="https://digitalzone.com/">
+                        <img src="./images/DZlogo.svg" width="240" alt="Logo_Image" id="logo">
+                    </a>
+
+
+                    <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse row " id="collapsibleNavId">
+                        <ul class="navbar-nav d-flex justify-content-end mt-2 mt-lg-0 flex-wrap">
+
+                            <li class="nav-item my-2 mx-md-2 px-2 dropdown">
+                                <a class="nav-link dropdown-toggle" style="color: #000000;" href="#Image Handler"
+                                    id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">Image
+                                    Handler</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownId">
+                                    <a class="dropdown-item highlight" href="#PDF_To_JPG" data-key="PDF_To_JPG">PDF to
+                                        JPG</a>
+                                    <a class="dropdown-item highlight" href="#PDF_To_PNG" data-key="PDF_To_PNG">PDF to
+                                        PNG</a>
+                                    <a class="dropdown-item highlight" href="#JPG_To_PDF" data-key="JPG_To_PDF">JPG to
+                                        PDF</a>
+                                    <a class="dropdown-item highlight" href="#PNG_To_PDF" data-key="PNG_To_PDF">PNG to
+                                        PDF</a>
+                                </div>
+                            </li>
+
+                            <li class="nav-item my-2 mx-md-2 px-2">
+                                <a class="nav-link highlight" style="color: #000000;" href="#Merge" data-key="Merge"
+                                    aria-current="page">Merge</a>
+                            </li>
+
+                            <li class="nav-item my-2 mx-md-2 px-2">
+                                <a class="nav-link highlight" style="color: #000000;" href="#Compress"
+                                    data-key="Compress" aria-current="page">Compress</a>
+                            </li>
+
+                            <li class="nav-item my-2 mx-md-3 shadow-none">
+                                <a id="nav-link" href="#" style="text-decoration: none;">
+                                    <!-- Button trigger modal -->
+                                    <button class="nav_button btn " data-bs-toggle="modal" href="#SignIn" role="button"
+                                        id="navLogin">
+                                        Login
+                                    </button>
+                                </a>
+                            </li>
+
+                            <li class="nav-item my-2 mx-md-3 shadow-none">
+                                <a id="nav-link" href="#" style="text-decoration: none;">
+                                    <button class="nav_button btn " id="navSignOut" style="display: none;"
+                                        onclick="permission(false);alert('Signed Out!👋');">
+                                        Sign Out
+                                    </button>
+                                </a>
+                            </li>
+
+                        </ul>
+
+                        <style>
+
+                        </style>
+
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+    </section>
+
+    <!-- INFORMATION TILES -->
+    <main style="padding-top: 100px;">
+
+        <div class="container-fluid px-5 px-md-3 px-lg-3 px-xl-2 px-xxl-5">
+            <div class="row text-center pt-2">
+                <h1 id="Title" style=" -webkit-background-clip: text;
+     background-image: linear-gradient(90deg,  #1C2D46 45%, #1C2D4666 50%, #1C2D46 55%);
+     color: transparent;">
+                    PDF Library And Editor
+                </h1>
+            </div>
+
+            <div class="row mx-sm-3 mx-md-0 mx-lg-5 justify-content-around gx-5 gx-xxl-3 " id="ImageHandler">
+
+                <!-- PDF To JPG -->
+                <div class="col-md-6 my-3 col-xl-5 col-xxl-4" id="PDF_To_JPG">
+                    <div class="frontPlate">
+                        <div class="Abstract">
+                            <h4 class="pb-1 d-inline-block me-4">
+                                <b>PDF to JPG</b>
+                            </h4>
+
+                            <img class="img-fluid" src="./images/icons/pdftojpg.svg" alt="PDF To JPG Icon"
+                                style="width: 50px;">
+
+                            <div id="inner-box1" class="inner-box">
+                                <p class="mb-4 shadow-sm p-3 pt-3">
+                                    Effortlessly convert PDF files into high-quality JPG images for convenient sharing
+                                    and viewing.
+                                    <br><br>
+                                    This conversion preserves the layout and content of the original PDF,
+                                    ensuring clarity and accuracy in the resulting images.
+                                </p>
+
+                                <div class="overlay-box">
+                                    <img class="d-block" src="./images/1.png" alt="PDF to jpg"
+                                        style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                                </div>
+                            </div>
+
+                            <a href="#" data-target="inner-box1" class="open-button">
+                                <button type="button" class="btn btn-primary fs-5 toolBtn pdf2jpgbtn "
+                                    data-bs-toggle="modal" data-bs-target="#toolkit">
+                                    Convert
+                                </button>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- PDF To PNG -->
+                <div class="col-md-6 my-3 col-xl-5 col-xxl-4" id="PDF_To_PNG">
+                    <div class="frontPlate">
+                        <div class="Abstract">
+                            <h4 class="pb-1 d-inline-block me-4">
+                                <b>PDF to PNG</b>
+                            </h4>
+
+                            <img class="img-fluid" src="./images/icons/pdftopng.svg" alt="PDF to PNG Icon"
+                                style="width: 50px;">
+
+                            <div id="inner-box3" class="inner-box">
+                                <p class="mb-4 shadow-sm p-3 pt-3">
+                                    Convert PDF documents to PNG format, retaining image quality and transparency.
+                                    <br><br>
+                                    This conversion is ideal for graphics and design work, maintaining the integrity of
+                                    images within the PDF while allowing for easy editing and use in various
+                                    applications.
+                                </p>
+
+                                <div class="overlay-box">
+                                    <img class="d-block" src="./images/2.png" alt="PDF to jpg"
+                                        style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                                </div>
+                            </div>
+
+                            <a href="#" data-target="inner-box3" class="open-button">
+                                <button type="button" class="btn btn-primary fs-5 toolBtn pdf2pngbtn"
+                                    data-bs-toggle="modal" data-bs-target="#toolkit">
+                                    Convert
+                                </button>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- JPG To PDF -->
+                <div class="col-md-6 my-3 col-xl-5 col-xxl-4" id="JPG_To_PDF">
+                    <div class="frontPlate">
+
+                        <div class="Abstract">
+                            <h4 class="pb-1 d-inline-block me-4">
+                                <b>JPG to PDF</b>
+                            </h4>
+
+                            <img class="img-fluid" src="./images/icons/jpgtopdf.svg" alt="JPG to PDF Icon"
+                                style="width: 50px;">
+
+                            <div id="inner-box2" class="inner-box">
+                                <p class="mb-4 shadow-sm p-3 pt-3">
+                                    Convert JPG images into PDF documents, enabling the consolidation of multiple images
+                                    into a single, easy-to-share PDF file.
+                                    <br><br>
+                                    This conversion maintains image quality and allows for efficient organization and
+                                    presentation of visual content.
+                                </p>
+
+                                <div class="overlay-box">
+                                    <img class="d-block" src="./images/3.png" alt="PDF to jpg"
+                                        style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                                </div>
+                            </div>
+
+                            <a href="#" data-target="inner-box2" class="open-button">
+                                <button type="button" class="btn btn-primary fs-5 toolBtn jpg2pdfbtn"
+                                    data-bs-toggle="modal" data-bs-target="#toolkit">
+                                    Convert
+                                </button>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- PNG To PDF -->
+                <div class="col-md-6 my-3 col-xl-5 col-xxl-4" id="PNG_To_PDF">
+                    <div class="frontPlate">
+                        <div class="Abstract">
+                            <h4 class="pb-1 d-inline-block me-4">
+                                <b>PNG to PDF</b>
+                            </h4>
+
+                            <img class="img-fluid" src="./images/icons/pngtopdf.svg" alt="PNG to PDF Icon"
+                                style="width: 50px;">
+
+                            <div id="inner-box4" class="inner-box">
+                                <p class="mb-4 shadow-sm p-3 pt-3">
+                                    Convert PNG images to PDF format, preserving image quality and enabling the creation
+                                    of professional-quality documents.
+                                    <br><br>
+                                    This conversion is useful for creating reports, presentations, or any document that
+                                    requires the inclusion of high-quality images.
+                                </p>
+
+                                <div class="overlay-box">
+                                    <img class="d-block" src="./images/4.png" alt="PDF to jpg"
+                                        style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                                </div>
+                            </div>
+
+                            <a href="#" data-target="inner-box4" class="open-button">
+                                <button type="button" class="btn btn-primary fs-5 toolBtn png2pdfbtn"
+                                    data-bs-toggle="modal" data-bs-target="#toolkit">
+                                    Convert
+                                </button>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Merge -->
+                <div class="col-md-6 my-3 col-xl-5 col-xxl-4" id="Merge">
+                    <div class="frontPlate">
+                        <div class="Abstract">
+                            <h4 class="pb-1 d-inline-block me-4">
+                                <b>Merge</b>
+                            </h4>
+
+                            <img class="img-fluid" src="./images/icons/merge.svg" alt="Merge Icon" style="width: 50px;">
+
+                            <div id="inner-box6" class="inner-box">
+                                <p class="mb-4 shadow-sm p-3 pt-3">
+                                    Combine multiple PDF files into a single document, simplifying document management
+                                    and organization.
+                                    <br><br>
+                                    This feature is particularly useful for merging related documents or chapters into a
+                                    cohesive file.
+                                </p>
+
+                                <div class="overlay-box">
+                                    <img class="d-block" src="./images/5.png" alt="PDF to jpg"
+                                        style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                                </div>
+                            </div>
+
+                            <a href="#" data-target="inner-box6" class="open-button">
+                                <button type="button" class="btn btn-primary fs-5 toolBtn mergebtn"
+                                    data-bs-toggle="modal" data-bs-target="#toolkit">
+                                    Merge
+                                </button>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Compress -->
+                <div class="col-md-6 my-3 col-xl-5 col-xxl-4" id="Compress">
+                    <div class="frontPlate">
+                        <div class="Abstract">
+                            <h4 class="pb-1 d-inline-block me-4">
+                                <b>Compress</b>
+                            </h4>
+
+                            <img class="img-fluid" src="./images/icons/compress.svg" alt="Compress Icon"
+                                style="width: 50px;">
+
+                            <div id="inner-box5" class="inner-box">
+                                <p class="mb-4 shadow-sm p-3 pt-3">
+                                    Reduce the file size of PDF documents without compromising quality, making it easier
+                                    to share and store large files.
+                                    <br><br>
+                                    This feature is beneficial for optimizing storage space and improving the efficiency
+                                    of file transfer and sharing.
+                                </p>
+
+                                <div class="overlay-box">
+                                    <img class="d-block" src="./images/6.png" alt="PDF to jpg"
+                                        style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                                </div>
+                            </div>
+
+                            <a href="#" data-target="inner-box5" class="open-button">
+                                <button type="button" class="btn btn-primary fs-5 toolBtn compressbtn"
+                                    data-bs-toggle="modal" data-bs-target="#toolkit">
+                                    Compress
+                                </button>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- REGISTRATION -->
+    <section>
+
+        <!-- SigniN User -->
+        <div class="modal fade" id="SignIn" aria-hidden="true" aria-labelledby="SignInlabel" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="SignInlabel">Sign-In User
+                        </h2>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form id="LoginForm">
+                        <div class="modal-body" style="position: relative;">
+
+                            <div class="form-floating my-2">
+                                <input type="email" class="form-control" id="emailLogInp"
+                                    placeholder="name@example.com">
+                                <label for="emailLogInp">Email address</label>
+                            </div>
+
+                            <div class="form-floating my-2">
+                                <input type="password" class="form-control" id="passwordLogInp" placeholder="Password">
+                                <label for="passwordLogInp">Password</label>
+                            </div>
+
+                            <div style="position: absolute;bottom:0;left:150px;width: 100%;">
+                                <video src="https://digitalzone.com/wp-content/uploads/2023/04/Hero-1.webm"
+                                    style="height:15vh;opacity: 0.2;width: 100%;margin: auto;" autoplay loop></video>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-5 col-md-6">
+                                        <label id="forgotpasslabel" style="cursor:pointer;">Forgot Password</label>
+                                    </div>
+                                    <div class="col-7 col-md-6 d-flex justify-content-end">
+                                        <button type="button" class="btn btn-outline-primary me-4"
+                                            data-bs-target="#RegisterUser" data-bs-toggle="modal"
+                                            data-bs-dismiss="modal">Sign Up</button>
+
+                                        <button type="submit" class="btn btn-outline-success"
+                                            data-bs-dismiss="modal">Login</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Register User -->
+        <div class="modal fade" id="RegisterUser" aria-hidden="true" aria-labelledby="RegisterUserLabel" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="RegisterUserLabel">Register User</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form id="RegisterForm">
+                        <div class="modal-body">
+
+                            <div id="Register" style="position: relative;">
+
+                                <div class="form-floating my-2">
+                                    <input type="text" class="form-control" id="fnameRegInp" placeholder="Rohan">
+                                    <label for="fnameRegInp">First Name</label>
+                                </div>
+
+                                <div class="form-floating my-2">
+                                    <input type="text" class="form-control" id="lnameRegInp" placeholder="Ambike">
+                                    <label for="lnameRegInp">Last Name</label>
+                                </div>
+
+                                <div class="form-floating my-2">
+                                    <input type="number" class="form-control" id="phoneRegInp" placeholder="0123456789">
+                                    <label for="phoneRegInp">Phone Number</label>
+                                </div>
+
+                                <div class="form-floating my-2">
+                                    <input type="email" class="form-control" id="emailRegInp"
+                                        placeholder="name@example.com">
+                                    <label for="emailRegInp">Email address</label>
+                                </div>
+
+                                <div class="form-floating my-2">
+                                    <input type="password" class="form-control" id="passwordRegInp"
+                                        placeholder="Password">
+                                    <label for="passwordRegInp">Password</label>
+                                </div>
+
+                                <div id="Registered" style="display: none;">
+                                    <h3 class="text-center text-success my-5">User Registered Succesfully!!</h2>
+                                </div>
+
+                                <video
+                                    src="https://digitalzone.com/wp-content/uploads/2023/04/End-To-End-Content-Creation-wbg.webm"
+                                    style="height:15vh;opacity: 0.2;position: absolute;top:0;right:0;height: 100%;margin: auto;"
+                                    autoplay loop></video>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <!-- Blank -->
+                                    </div>
+                                    <div class="col-md-8 d-flex justify-content-end">
+                                        <button class="btn btn-outline-primary me-4" type="submit" id="CreateUser"
+                                            data-bs-target="#SignIn" data-bs-toggle="modal" data-bs-dismiss="modal">
+                                            Create New User
+                                        </button>
+
+                                        <button class="btn btn-outline-success" data-bs-target="#SignIn"
+                                            data-bs-toggle="modal" data-bs-dismiss="modal">Sign
+                                            In</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- TOOLKIT -->
+    <section>
+
+        <!-- Button trigger modal -->
+        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#toolkit" id="panelload">
+            Launch demo modal
+        </button> -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="toolkit" tabindex="-1" aria-labelledby="toolkitLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen-xl-down modal-xl" id="toolset">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title text-white" id="toolkitLabel">Tool Kit</h2>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body toolkitBack">
+                        <div class="container-fluid ">
+                            <div class="row" id="frame">
+                                <div class="col-md-4 col-xl-3 pb-3">
+                                    <div id="sideBar" class="m-0 row gy-3 flex-md-row text-center p-1 pe-2">
+                                        <div class="col-4 col-md-12 sidebarBtn" style="position: relative;">
+                                            <h3 class="me-3">PDF to JPG</h3>
+                                            <div class=" w-100" style="position: absolute;">
+                                                <img class="img-fluid me-0 back_icon" src="./images/icons/pdftojpg.svg"
+                                                    alt="JPG to PDF Icon">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-4 col-md-12 sidebarBtn" style="position: relative;">
+                                            <h3>PDF to PNG</h3>
+                                            <div class=" w-100" style="position: absolute;">
+                                                <img class="img-fluid me-0 back_icon" src="./images/icons/pdftopng.svg"
+                                                    alt="JPG to PDF Icon">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-4 col-md-12 sidebarBtn" style="position: relative;">
+                                            <h3>JPG to PDF</h3>
+                                            <div class=" w-100" style="position: absolute;">
+                                                <img class="img-fluid me-0 back_icon" src="./images/icons/jpgtopdf.svg"
+                                                    alt="JPG to PDF Icon">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-4 col-md-12 sidebarBtn" style="position: relative;">
+                                            <h3>PNG to PDF</h3>
+                                            <div class=" w-100" style="position: absolute;">
+                                                <img class="img-fluid me-0 back_icon" src="./images/icons/pngtopdf.svg"
+                                                    alt="JPG to PDF Icon">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-4 col-md-12 sidebarBtn" style="position: relative;">
+                                            <h3>Merge</h3>
+                                            <div class=" w-100" style="position: absolute;">
+                                                <img class="img-fluid me-0 back_icon" src="./images/icons/merge.svg"
+                                                    alt="JPG to PDF Icon">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-4 col-md-12 sidebarBtn" style="position: relative;">
+                                            <h3>Compress</h3>
+                                            <div class=" w-100" style="position: absolute;">
+                                                <img class="img-fluid me-0 back_icon" src="./images/icons/compress.svg"
+                                                    alt="JPG to PDF Icon">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8 col-xl-9  p-3 shadow-lg" style="background-color: #1C2D4699;">
+                                    <div id="panel">
+
+                                        <!-- PDF to JPG Conversion -->
+                                        <div class="container-fluid pt-4 px-4 tool" style="display:none;">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h3>PDF to JPG Conversion</h3>
+                                                    <input class="form-control" type="file" id="fileInputJPGP2I"
+                                                        accept=".pdf" data-type="jpg">
+                                                    <button type="button" id="downloadBtnJPGP2I" class="btn btn-primary"
+                                                        style="display:none;">Download PDF
+                                                        (JPG)</button>
+                                                    <button type="button" id="refreshBtnJPGP2I"
+                                                        class="btn btn-secondary" style="display:none;">Clear</button>
+                                                    <div id="outputJPGP2I" class="output shadow-sm "></div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- PDF to PNG Conversion -->
+                                        <div class="container-fluid pt-4 px-4 tool" style="display:none;">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h3>PDF to PNG Conversion</h3>
+                                                    <input class="form-control" type="file" id="fileInputPNGP2I"
+                                                        accept=".pdf" data-type="png">
+                                                    <button type="button" id="downloadBtnPNGP2I" class="btn btn-primary"
+                                                        style="display:none;">Download PDF
+                                                        (PNG)</button>
+                                                    <button type="button" id="refreshBtnPNGP2I"
+                                                        class="btn btn-secondary" style="display:none;">Clear</button>
+                                                    <div id="outputPNGP2I" class="output shadow-sm "></div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- JPG to PDF Conversion -->
+                                        <div class="container-fluid pt-4 px-4 tool" style="display:none;">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h3>JPG to PDF Conversion</h3>
+                                                    <input class="form-control" type="file" id="fileInputJPGI2P"
+                                                        accept=".jpg" multiple>
+                                                    <button id="viewPdfLinkJPGI2P" class="btn btn-primary text-white"
+                                                        type="button" style="display:none;">View
+                                                        PDF</button>
+                                                    <a id="downloadLinkJPGI2P" class="bg-transparent border-0 m-0"
+                                                        style="display:none;"><button type="button"
+                                                            class="btn btn-info text-white" type="button">Download
+                                                            PDF</button>
+                                                    </a>
+                                                    <button type="button" id="refreshBtnJPGI2P"
+                                                        class="btn btn-secondary" style="display:none;">Clear</button>
+                                                    <div id="pdfViewerJPGI2P" class="pdf-viewer" style="display:none;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- PNG to PDF Conversion -->
+                                        <div class="container-fluid pt-4 px-4 tool" style="display:none;">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h3>PNG to PDF Conversion</h3>
+                                                    <input class="form-control" type="file" id="fileInputPNGI2P"
+                                                        accept=".png" multiple>
+
+                                                    <button id="viewPdfLinkPNGI2P" class="btn btn-primary text-white"
+                                                        type="button" style="display:none;">View
+                                                        PDF</button>
+
+                                                    <a id="downloadLinkPNGI2P" class="bg-transparent border-0 m-0"
+                                                        style="display:none;">
+                                                        <button type="button" class="btn btn-info text-white"
+                                                            type="button">Download PDF</button>
+                                                    </a>
+
+                                                    <button type="button" id="refreshBtnPNGI2P"
+                                                        class="btn btn-secondary" style="display:none;">Clear</button>
+
+                                                    <div id="pdfViewerPNGI2P" class="pdf-viewer" style="display:none;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Merge -->
+                                        <div class="container-fluid pt-4 px-4 tool" style="display:none;">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h3>Merge</h3>
+                                                    <input class="form-control" type="file" id="mergeFileInput"
+                                                        accept=".pdf" multiple>
+                                                    <button type="button" id="mergeBtn" class="btn btn-success">Merge
+                                                        PDFs</button>
+                                                    <a id="mergeDownloadLink" class="bg-transparent border-0 m-0"
+                                                        style="display:none;">
+                                                        <button type="button" class="btn btn-info text-white">Download
+                                                            Merged PDF</button>
+                                                    </a>
+                                                    <button type="button" id="mergeRefreshBtn" class="btn btn-secondary"
+                                                        style="display:none;">Clear</button>
+                                                    <div id="mergePdfViewer" class="pdf-viewer" style="display:none;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Compress -->
+                                        <div class="container-fluid pt-4 px-4 tool" style="display:none;">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h3>Compress</h3>
+                                                    <input class="form-control" type="file" id="compressFileInput"
+                                                        accept=".pdf">
+                                                    <button type="button" id="compressBtn"
+                                                        class="btn btn-success">Compress PDF</button>
+                                                    <a id="compressDownloadLink" class="bg-transparent border-0 m-0"
+                                                        style="display:none;">
+                                                        <button type="button" class="btn btn-info text-white">Download
+                                                            Compressed PDF</button>
+                                                    </a>
+                                                    <button type="button" id="compressRefreshBtn"
+                                                        class="btn btn-secondary" style="display:none;">Clear</button>
+                                                    <div id="compressPdfViewer" class="pdf-viewer"
+                                                        style="display:none;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <footer class="py-3">
+        <div class="container shadow-lg px-5">
+            <div class="row">
+
+                <div class="col-12 py-3">
+                    <p class="text-center p-0 m-0">
+                        © 2024 PDF Editor
+                        |
+                        All Rights Reserved.
+                        |
+                        Services Rendered By :
+                        <a href="https://www.digitalzone.com/">
+                            Digitalzone
+                        </a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+
+    <!-- Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.16.0/dist/pdf-lib.js"></script>
+
+    <!-- General Click, SHOW, HIDE, Hover, Highlight -->
+    <script src="./general.js">
+    </script>
+
+    <!-- LOGIN REGISTER LOGOUT FORGOT PASSWORD -->
+    <script src="./loginSetup.js" type="module"></script>
+
+    <!-- TOOLKIT -->
+    <script src="./toolkit.js"></script>
+
+</body>
+
+</html>
