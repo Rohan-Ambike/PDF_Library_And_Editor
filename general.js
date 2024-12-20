@@ -4,13 +4,13 @@ $(document).ready(function () {
 
     $(window).scroll(function () {
         if ($(this).scrollTop() > 15) {
-            $('#logo').attr({ 'src': './images/DZwlogo.svg', });
+            $('#logo').attr({ 'src': './images/wlogo.png', });
             $('#nav').css('background-color', '#1C2D46aa');
             $('.nav-link').css('color', '#ffffff');
 
         }
         else if ($(this).scrollTop() < 15) {
-            $('#logo').attr({ 'src': './images/DZlogo.svg', });
+            $('#logo').attr({ 'src': './images/logo.png', });
             $('#nav').css('background-color', '#ffffffcc');
             $('.nav-link').css('color', '#000000');
 
